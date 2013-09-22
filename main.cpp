@@ -21,6 +21,7 @@ void display()
     glLoadIdentity();
 
     glRotated(rotatex, 0, 1, 0);
+    glRotated(rotatey, 1, 0, 0);
     cout<<"rotatex: "<<rotatex<<endl;
 
     glBegin(GL_TRIANGLES);
@@ -45,17 +46,11 @@ void reshape(int w, int h)
 void update_orientation(int x, int y)
 {
     // Mouse changed in x or y direction;
-    if(x != width/2 || y != height/2)
-    {
-       rotatex += ((x - width/2))/2  ;
-       rotatex = rotatex % 360;
+   rotatex += ((x - width/2))/2  ;
+   rotatex = rotatex % 360;
+   rotatey += ((y - height/2))/2  ;
+   rotatey = rotatey % 360;
         
-    }
-    // No rotation
-    else{
-        rotatex += 0;
-        rotatey += 0;
-    }
     glutWarpPointer(width/2, height/2);
 }
 
